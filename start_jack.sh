@@ -77,7 +77,7 @@ while getopts ":d:r:n:p:vhuk" arg; do
 	?) 
 	    echo "Invalid option: -${OPTARG}."
 	    echo 
-	    echo usage
+	    usage
 	    ;;
     esac
 done
