@@ -4,6 +4,14 @@ VERSION=0.1.0
 
 PROG=$(basename $0)
 
+if (! command -v jack_control &> /dev/null) || (! command -v a2jmidid &> /dev/null) || (! command -v qjackctl &> /dev/null); then 
+    echo "Dependencies not installed."
+    echo "Run the following:"
+    echo
+    echo "sudo apt install jackd2 a2jmidid qjackctl"
+    exit 1
+fi 
+
 function usage {
     echo "Usage: $PROG [-drnpvh]" 2>&1
     echo "$PROG - A quick bash script for starting, stopping, and configuring JACK"
