@@ -1,6 +1,6 @@
 install: 
-	cp start_jack.sh /usr/local/bin/start_jack
-	cp stop_jack.sh /usr/local/bin/stop_jack
+	cp jon.sh /usr/local/bin/jon
+	cp jof.sh /usr/local/bin/jof
 uninstall: 
-	rm /usr/local/bin/start_jack
-	rm /usr/local/bin/stop_jack
+	rm /usr/local/bin/jon
+	rm /usr/local/bin/jof

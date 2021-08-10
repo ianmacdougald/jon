@@ -37,11 +37,11 @@ function version {
 }
 
 function kill_jack { 
-    stop_jack 
+    jof 
     exit 1
 }
 
-stop_jack
+jof
 
 DEVICE="PCH,0"
 RATE=48000
