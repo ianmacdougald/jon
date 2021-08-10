@@ -51,7 +51,7 @@ function kill_jack {
 
 jof
 
-DEVICE="PCH,0"
+DEVICE="PCH"
 RATE=48000
 NPERIODS=2
 PERIOD=128
