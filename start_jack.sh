@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ $1 == "uninstall" ]; then 
+    echo "Uninstalling start_jack"
+    sudo rm /usr/local/bin/start_jack
+    exit 
+fi 
+
 #set up parameters
 device=${device:-PCH}
 rate=${rate:-48000}
