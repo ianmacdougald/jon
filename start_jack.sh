@@ -57,3 +57,11 @@ sleep 1
 #set the pulse audio sink
 pacmd "set-default-sink jack_out"
 pacmd "set-default-source jack_in"
+
+#open qjackctl 
+echo "Opening qjackctl"
+qjackctl -s &.
+
+#open patchage
+echo "Opening patchage"
+patchage & > /dev/null
