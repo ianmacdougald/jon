@@ -1,57 +1,67 @@
 #!/bin/bash
 
-if [ $1 == "uninstall" ] || [ $1 == "--uninstall" ] || [ $1 == "-u" ]; then 
-    echo "Uninstalling start_jack"
-    sudo rm /usr/local/bin/start_jack
-    exit 
-fi 
+VERSION=0.1.0
 
-if [ $1 == "version" ] || [ $1 == "--version" ] || [ $1 == "-v" ]; then 
-    echo "start_jack: 0.1.0"
-    exit
-fi
-
-if [ $1 == "help" ] || [ $1 == "--help" ] || [ $1 == "-h" ]; then 
-    echo "Usage: start_jack [options] [command-and-args]"
-    echo ""
+function usage {
+    echo "Usage: $(basename $0) [-drnpvh]" 2>&1
     echo "start_jack - A quick bash script for starting, stopping, and configuring JACK"
-    echo ""
-    echo "Options:"
-    echo ""
-    echo "--device
-	Specify the audio device for the JACK server to use"
-    echo "--rate
-	Set the sample rate for the server"
-    echo "--nperiods
-	Set the number of periods for JACK (2 for PCI. 3 for USB)"
-    echo ""
-    echo "--period
-	Set the number of samples per period"
-    echo ""
-    echo "-h, --help
-	Show help about command line options"
-    echo ""
-    echo "-u, --uninstall
-	Uninstall start_jack"
-    echo "-v, --version 
-	Show version information"
-    exit 
-fi 
+    echo "  -d	    Specify the audio device for the JACK server to use"
+    echo "  -r	    Set the sample rate for the server"
+    echo "  -n	    Set the number of periods for JACK (2 for PCI. 3 for USB)"
+    echo "  -p	    Set the number of samples per period"
+    echo "  -h	    Show help about command line options"
+    echo "  -u	    Uninstall start_jack"
+    echo "  -v	    Show version information"
+    exit 1
+}
 
-#set up parameters
-device=${device:-PCH}
-rate=${rate:-48000}
-nperiods=${nperiods:-2}
-period=${period:-64}
+function uninstall { 
+    echo "Uninstalling $(basename $0)"
+    sudo rm /usr/local/bin/start_jack
+    exit 1
+}
 
-#assign customized parameters
-while [ $# -gt 0 ]; do 
-    if [[ $1 == *"--"* ]]; then 
-	param="${1/--/}"
-	declare $param="$2"
-    fi
+function version { 
+    echo "$(basename $0): $VERSION"
+    exit 1
+}
 
-    shift 
+DEVICE=PCH
+RATE=48000
+NPERIODS=2
+PERIOD=128
+
+options=":uvhdrnp"
+
+while getopts ${options} arg; do 
+    case "${arg}" in 
+	d) 
+	    DEVICE="${OPTARG}"
+	    ;;
+	r)
+	    RATE="${OPTARG}"
+	    ;; 
+	n) 
+	    NPERIODS="${OPTARG}"
+	    ;; 
+	p) 
+	    PERIOD="${OPTARG}"
+	    ;;
+	v) 
+	    version
+	    ;; 
+	h) 
+	    usage
+	    ;; 
+	u)
+	    uninstall
+	    ;;
+	?) 
+	    echo "Invalid option: -${OPTARG}."
+	    echo 
+	    echo usage
+	    ;;
+    esac
 done
 
 #reset pulse audio to default io
@@ -79,10 +89,10 @@ fi
 #start jack
 jack_control start
 jack_control ds alsa
-jack_control dps device hw:$device
-jack_control dps rate $rate 
-jack_control dps nperiods $nperiods
-jack_control dps period $period 
+jack_control dps device hw:$DEVICE
+jack_control dps rate $RATE 
+jack_control dps nperiods $NPERIODS
+jack_control dps period $PERIOD 
 
 sleep 1 
 
@@ -99,7 +109,3 @@ pacmd "set-default-source jack_in"
 #open qjackctl 
 echo "Opening qjackctl"
 qjackctl -s &.
-
-#open patchage
-echo "Opening patchage"
-patchage & > /dev/null
