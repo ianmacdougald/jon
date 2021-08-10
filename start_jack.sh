@@ -1,8 +1,40 @@
 #!/bin/bash
 
-if [ $1 == "uninstall" ]; then 
+if [ $1 == "uninstall" ] || [ $1 == "--uninstall" ] || [ $1 == "-u" ]; then 
     echo "Uninstalling start_jack"
     sudo rm /usr/local/bin/start_jack
+    exit 
+fi 
+
+if [ $1 == "version" ] || [ $1 == "--version" ] || [ $1 == "-v" ]; then 
+    echo "start_jack: 0.1.0"
+    exit
+fi
+
+if [ $1 == "help" ] || [ $1 == "--help" ] || [ $1 == "-h" ]; then 
+    echo "Usage: start_jack [options] [command-and-args]"
+    echo ""
+    echo "start_jack - A quick bash script for starting, stopping, and configuring JACK"
+    echo ""
+    echo "Options:"
+    echo ""
+    echo "--device
+	Specify the audio device for the JACK server to use"
+    echo "--rate
+	Set the sample rate for the server"
+    echo "--nperiods
+	Set the number of periods for JACK (2 for PCI. 3 for USB)"
+    echo ""
+    echo "--period
+	Set the number of samples per period"
+    echo ""
+    echo "-h, --help
+	Show help about command line options"
+    echo ""
+    echo "-u, --uninstall
+	Uninstall start_jack"
+    echo "-v, --version 
+	Show version information"
     exit 
 fi 
 
