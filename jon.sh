@@ -104,12 +104,12 @@ jack_control dps device hw:$DEVICE
 jack_control dps rate $RATE 
 jack_control dps nperiods $NPERIODS
 jack_control dps period $PERIOD 
-jack_control start > /dev/null
+jack_control start &> /dev/null
 echo "--- starting jackd"
 
 #start a2j midi
 a2j_control --ehw
-a2j_control --start > /dev/null
+a2j_control --start &> /dev/null
 echo "--- starting a2jmidid"
 
 sleep 1 
