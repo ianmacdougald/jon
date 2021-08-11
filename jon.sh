@@ -13,8 +13,8 @@ if (! command -v jack_control &> /dev/null) || (! command -v a2jmidid &> /dev/nu
 fi 
 
 function usage {
-    echo "Usage: $PROG [-drnpvh]" 2>&1
-    echo "$PROG - A quick bash script for starting, stopping, and configuring JACK"
+    echo "Usage: $PROG [command] [command] ..." 2>&1
+    echo "$PROG - A quick bash script for starting JACK, a2jmidid, and QjackCtl"
     echo "  -d <param>	    Specify the audio device for the JACK server to use"
     echo 
     echo "  -h		    Show help about command line options"

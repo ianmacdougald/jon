@@ -6,7 +6,7 @@ PROG=$(basename $0)
 
 function usage { 
     echo "Usage: $PROG [command]" 2>&1
-    echo "$PROG - A quick bash script for stopping jackd, a2jmidid, and QjackCTL"
+    echo "$PROG - A quick bash script for stopping JACK, a2jmidid, and QjackCtl"
     echo "  -h	    Show help about command line options"
     echo 
     echo "  -u	    Uninstall $(basename $0)"
