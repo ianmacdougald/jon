@@ -41,9 +41,9 @@ function remove {
 function install { 
     for script in $TARGET; do
 	if [ ! $script == $PWD/$(basename $0) ]; then 
-	    echo "--- installing $(basename $script) in $DEST"
 	    sudo cp $PWD/$(basename $script) $DEST/$(basename $script)
-	    sudo chmod a+x $DEST/$(basename $script)
+	    sudo chmod a+x $DEST/$(basename $script)	    
+	    echo "--- installing $(basename $script) in $DEST"
 	fi  
     done
     exit 1
