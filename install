@@ -1,0 +1,95 @@
+#!/bin/bash
+
+VERSION=0.1.0
+
+DEST=/usr/local/bin
+TARGET=$PWD/jo*
+
+RFLAG=0
+
+function usage { 
+    echo "Usage: $(basename $0) [OPTIONS]"
+    echo "Installs and removes jon and jof to and from /usr/local/bin by default."
+    echo 
+    echo "Options: "
+    echo "  -d, --directory [STRING]	    Install scripts in directory STRING"
+    echo 
+    echo "  -h, --help			    Show help about command line options"
+    echo
+    echo "  -R, --remove [STRING]		    Remove scripts from directory STRING"
+    echo
+    echo "  -r				    Remove scripts from default directory"
+    echo
+    echo "  -v, --version			    Get version information"
+    exit 1
+}
+
+function version { 
+    echo "$(basename $0): $VERSION"
+    exit 1
+}
+
+function remove { 
+    for script in $TARGET; do 
+	if [ $script != $PWD/$(basename $0) ]; then 
+	    EXISTS=$(echo $(ls $DEST | grep $(basename $script)))
+	    if [ $EXISTS ]; then 
+		echo "--- removing $(basename $script) from $DEST"
+		sudo rm $DEST/$(basename $script)
+	    fi 
+	fi 
+    done
+    exit 1
+}
+
+function install { 
+    for script in $TARGET; do
+	if [ ! $script == $PWD/$(basename $0) ]; then 
+	    echo "--- installing $(basename $script) in $DEST"
+	    sudo cp $PWD/$(basename $script) $DEST/$(basename $script)
+	    sudo chmod a+x $DEST/$(basename $script)
+	fi  
+    done
+    exit 1
+}
+
+if [ ! $1 ]; then 
+    install 
+else 
+    if [ $1 == "--help" ]; then 
+	usage
+    elif [ $1 == "--remove" ]; then 
+	if [ $2 ]; then 
+	    DEST=$2
+	fi
+	remove
+    elif [ $1 == "--version" ]; then 
+	version
+    elif [ $1 == "--directory" ]; then 
+	DEST=$1
+	install
+    else 
+	while getopts ":d:hvrR:" arg; do 
+	    case "${arg}" in 
+		d)
+		    DEST="${OPTARG}"
+		    install
+		    ;;
+		h)
+		    usage
+		    ;;
+		v) 
+		    version
+		    ;;
+		r)
+		    remove
+		    ;;
+		R) 
+		    DEST="${OPTARG}"
+		    remove
+		    ;;
+		?) 
+	    esac
+	done
+    fi 
+fi 
