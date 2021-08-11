@@ -100,7 +100,9 @@ sleep 1
 
 #start jack
 jack_control ds alsa
-jack_control dps device HW:$DEVICE
+jack_control dps device hw:$DEVICE
+jack_control dps capture hw:$DEVICE
+jack_control dps playback hw:$DEVICE
 jack_control dps rate $RATE 
 jack_control dps nperiods $NPERIODS
 jack_control dps period $PERIOD 
