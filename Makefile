@@ -1,5 +1,5 @@
 chmod: 
-	chmod +x *sh
+	sudo chmod a+rx *.sh
 
 install: 
 	cp jon.sh /usr/local/bin/jon
