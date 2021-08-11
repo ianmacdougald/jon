@@ -49,8 +49,6 @@ function kill_jack {
     exit 1
 }
 
-jof
-
 DEVICE="PCH"
 RATE=48000
 NPERIODS=2
@@ -89,6 +87,9 @@ while getopts ":d:r:n:p:vhuk" arg; do
 	    ;;
     esac
 done
+
+#kill jack, a2jmidid, and qjackctl 
+jof
 
 #reset pulse audio to default io
 pacmd "set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo"
