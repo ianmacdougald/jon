@@ -30,8 +30,8 @@ function remove {
 	if [ $script != $PWD/$(basename $0) ]; then 
 	    EXISTS=$(echo $(ls $DEST | grep $(basename $script)))
 	    if [ $EXISTS ]; then 
-		echo "--- removing $(basename $script) from $DEST"
 		sudo rm $DEST/$(basename $script)
+		echo "--- removing $(basename $script) from $DEST"
 	    fi 
 	fi 
     done
