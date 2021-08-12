@@ -9,7 +9,7 @@ if (! command -v jack_control &> /dev/null) || (! command -v a2jmidid &> /dev/nu
     echo "Run the following:"
     echo
     echo "sudo apt install jackd2 a2jmidid qjackctl"
-    exit 1
+    exit 0
 fi 
 
 function usage {
@@ -30,23 +30,23 @@ function usage {
     echo "  -u		    Uninstall $PROG"
     echo 
     echo "  -v		    Show version information"
-    exit 1
+    exit 0
 }
 
 function uninstall { 
     echo "Uninstalling $PROG"
     sudo rm /usr/local/bin/$PROG
-    exit 1
+    exit 0
 }
 
 function version { 
     echo "$PROG: $VERSION"
-    exit 1
+    exit 0
 }
 
 function kill_jack { 
     jof 
-    exit 1
+    exit 0
 }
 
 DEVICE="PCH"

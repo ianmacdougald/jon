@@ -12,18 +12,18 @@ function usage {
     echo "  -u	    Uninstall $(basename $0)"
     echo
     echo "  -v	    Show version information"
-    exit 1
+    exit 0
 }
 
 function uninstall { 
     echo "Uninstalling $PROG"
     sudo rm /usr/local/bin/$PROG 
-    exit 1
+    exit 0
 }
 
 function version { 
     echo "$PROG: $VERSION"
-    exit 1
+    exit 0
 }
 
 while getopts ":huv" arg; do 

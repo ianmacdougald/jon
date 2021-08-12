@@ -17,12 +17,12 @@ function usage {
     printf "\n\t-h, --help\t\t\tShow help about command line options\n"
     printf "\n\t-r\t\t\t\tRemove scripts from /usr/local/bin\n"
     printf "\n\t-v, --version\t\t\tGet version information\n"
-    exit 1
+    exit 0
 }
 
 function version { 
     echo "$(basename $0): $VERSION"
-    exit 1
+    exit 0
 }
 
 function remove { 
@@ -35,7 +35,7 @@ function remove {
 	    fi 
 	fi 
     done
-    exit 1
+    exit 0
 }
 
 function install { 
@@ -46,7 +46,7 @@ function install {
 	    echo "--- installing $(basename $script) in $DEST"
 	fi  
     done
-    exit 1
+    exit 0
 }
 
 if [ ! $1 ]; then 
