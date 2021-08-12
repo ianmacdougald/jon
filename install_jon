@@ -5,7 +5,12 @@ VERSION=0.1.0
 DEST=/usr/local/bin
 TARGET=$PWD/jo*
 
-RFLAG=0
+if (! command -v jack_control &> /dev/null) || (! command -v a2jmidid &> /dev/null) || (! command -v qjackctl &> /dev/null); then 
+    echo "Dependencies not installed."
+    echo -n "Run the following:"
+    printf "\n\tsudo apt install jackd2 a2jmidid qjackctl\n"
+    exit 0
+fi 
 
 function usage { 
     printf "NAME\n\t$(basename $0) - install and remove jon and jof\n\n"
