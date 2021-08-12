@@ -11,12 +11,12 @@ function usage {
     printf "NAME\n\t$(basename $0) - install and remove jon and jof\n\n"
     printf "SYNOPSIS\n\t./$(basename $0) [OPTION]\n\n"
     echo "DESCRIPTION"
-    printf "\tInstall jon and jof either to a directory passed as an argument to the option -d or to /usr/local/bin by default.\n"
-    printf "\n\tRemove scripts either from a directory passed as an argument to the option -R or from /usr/local/bin using the options -r or --remove.\n"
-    printf "\n\t-d, --directory [STRING]\tInstall scripts in directory STRING\n"
-    printf "\n\t-h, --help\t\t\tShow help about command line options\n"
-    printf "\n\t-r\t\t\t\tRemove scripts from /usr/local/bin\n"
-    printf "\n\t-v, --version\t\t\tGet version information\n"
+    printf "\tInstall and remove jon and jof to a directory or to /usr/local/bin by default.\n"
+    printf "\n\t-d [STRING]\t\tInstall scripts in directory STRING\n"
+    printf "\n\t-h, --help\t\tShow help about command line options\n"
+    printf "\n\t-r, --remove\t\tRemove scripts from /usr/local/bin\n"
+    printf "\n\t-R [STRING]\t\tRemove scripts from directory STRING\n"
+    printf "\n\t-v, --version\t\tGet version information\n"
     exit 0
 }
 

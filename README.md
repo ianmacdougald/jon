@@ -1,21 +1,21 @@
 # jon/jof -- Quick bash scripts for starting JACK, a2jmidid, and QjackCTL
 
-To install scripts in /usr/local/bin, run: 
+To install_jon scripts in /usr/local/bin, run: 
 ~~~~
-./install
+./install_jon
 ~~~~
 
 To remove, run: 
 ~~~~
-./install -r
+./install_jon -r
 ~~~~
 
-To install in another location: 
+To install_jon in another location: 
 ~~~~
-./install -d /other/locaction
+./install_jon -d /other/locaction
 ~~~~
 
 To remove from another location: 
 ~~~~
-./install -R /other/location
+./install_jon -R /other/location
 ~~~~
