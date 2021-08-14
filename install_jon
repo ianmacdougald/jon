@@ -16,7 +16,7 @@ function usage {
     printf "NAME\n\t$(basename $0) - install and remove jon and jof\n\n"
     printf "SYNOPSIS\n\t./$(basename $0) [OPTION]\n\n"
     echo "DESCRIPTION"
-    printf "\tInstall and remove jon and jof to a directory or to /usr/local/bin by default.\n"
+    printf "\tInstall and remove jon and jof to a directory (/usr/local/bin by default)\n"
     printf "\n\t-d [STRING]\t\tInstall scripts in directory STRING\n"
     printf "\n\t-h, --help\t\tShow help about command line options\n"
     printf "\n\t-r, --remove\t\tRemove scripts from /usr/local/bin\n"
