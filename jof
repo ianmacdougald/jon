@@ -5,13 +5,12 @@ VERSION=0.1.0
 PROG=$(basename $0)
 
 function usage { 
-    echo "Usage: $PROG [command]" 2>&1
-    echo "$PROG - A quick bash script for stopping JACK, a2jmidid, and QjackCtl"
-    echo "  -h	    Show help about command line options"
-    echo 
-    echo "  -u	    Uninstall $(basename $0)"
-    echo
-    echo "  -v	    Show version information"
+    printf "NAME\n\t$PROG - A convenience script for stopping JACK, a2jmidid, and QjackCtl\n\n" 2>&1
+    printf "SYNOPSIS\n\t./$PROG [OPTION] ... \n\n"
+    printf "DESCRIPTION\n\t Check for and kill processes running JACK, a2jmidid, and QjackCTL"
+    printf "\n\n\t-h\t\tShow help about command line options"
+    printf "\n\n\t-u [STRING]\tUninstall $PROG from directory STRING"
+    printf "\n\n\t-v\t\tShow version information\n"
     exit 0
 }
 

@@ -5,23 +5,20 @@ VERSION=0.1.0
 PROG=$(basename $0)
 
 function usage {
-    echo "Usage: $PROG [command] [command] ..." 2>&1
-    echo "$PROG - A quick bash script for starting JACK, a2jmidid, and QjackCtl"
-    echo "  -d <param>	    Specify the audio device for the JACK server to use"
-    echo 
-    echo "  -h		    Show help about command line options"
+    printf "NAME\n\t$PROG - A convenience script for starting JACK, a2jmidid, and QjackCtl\n\n" 2>&1
+    printf "SYNOPSIS\n\t./$PROG [OPTION] <argument> [OPTION] ... \n\n"
+    printf "DESCRIPTION\n\t Start and configure settings for JACK in coordination with a2jmidid and QJackCTL\n"
+    printf "\n\n\t-b [STRING]\tSet the playback device, defaulting to the argument of option -d"
+    printf "\n\n\t-c [STRING]\tSet the capture device, defaulting to the argumetn of option -d"
+    printf "\n\n\t-d [STRING]\tSpecify the audio device for the JACK server"
+    printf "\n\n\t-h\t\tShow help about command line options"
+    printf "\n\n\t-k\t\tKill jackd, a2jmidid, and qjackctl"
+    printf "\n\n\t-n [INT]\tSet the number of periods for JACK (2 for PCI, 3 for USB)"
+    printf "\n\n\t-p [INT]\tSet the number of samples per period"
+    printf "\n\n\t-r [INT]\tSet the sample rate for the server"
+    printf "\n\n\t-u\t\tUninstall $PROG"
+    printf "\n\n\t-v\t\tShow version information"
     echo
-    echo "  -k		    Kill jackd, a2jmidid, and QjackCtl"
-    echo
-    echo "  -n <param>	    Set the number of periods for JACK (2 for PCI. 3 for USB)"
-    echo
-    echo "  -p <param>	    Set the number of samples per period"
-    echo
-    echo "  -r <param>	    Set the sample rate for the server"
-    echo 
-    echo "  -u		    Uninstall $PROG"
-    echo 
-    echo "  -v		    Show version information"
     exit 0
 }
 
