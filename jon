@@ -41,15 +41,32 @@ function kill_jack {
     exit 0
 }
 
+function set_device { 
+    DEVICE=$1
+    if [ ! $PLAYBACK ]; then 
+	PLAYBACK=$DEVICE
+    fi 
+
+    if [ ! $CAPTURE ]; then 
+	CAPTURE=$DEVICE
+    fi 
+}
+
 DEVICE="PCH"
 RATE=48000
 NPERIODS=2
 PERIOD=128
 
-while getopts ":d:r:n:p:vhuk" arg; do 
+while getopts ":b:c:d:r:n:p:vhuk" arg; do 
     case "${arg}" in 
+	b) 
+	    PLAYBACK="${OPTARG}"
+	    ;;
+	c)
+	    CAPTURE="${OPTARG}"
+	    ;;
 	d) 
-	    DEVICE="${OPTARG}"
+	    set_device "${OPTARG}"
 	    ;;
 	r)
 	    RATE="${OPTARG}"
@@ -80,6 +97,10 @@ while getopts ":d:r:n:p:vhuk" arg; do
     esac
 done
 
+if [[ $DEVICE == "PCH" ]]; then 
+    set_device "PCH"
+fi
+
 #kill jack, a2jmidid, and qjackctl 
 jof
 
@@ -94,8 +115,8 @@ sleep 1
 #start jack
 jack_control ds alsa
 jack_control dps device hw:$DEVICE
-jack_control dps capture hw:$DEVICE
-jack_control dps playback hw:$DEVICE
+jack_control dps capture hw:$PLAYBACK
+jack_control dps playback hw:$CAPTURE
 jack_control dps rate $RATE 
 jack_control dps nperiods $NPERIODS
 jack_control dps period $PERIOD 
