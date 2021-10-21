@@ -9,7 +9,7 @@ function usage {
     printf "SYNOPSIS\n\t./$PROG [OPTION] <argument> [OPTION] ... \n\n"
     printf "DESCRIPTION\n\t Start and configure settings for JACK in coordination with a2jmidid and QJackCTL\n"
     printf "\n\n\t-b [STRING]\tSet the playback device, defaulting to the argument of option -d"
-    printf "\n\n\t-c [STRING]\tSet the capture device, defaulting to the argumetn of option -d"
+    printf "\n\n\t-c [STRING]\tSet the capture device, defaulting to the argument of option -d"
     printf "\n\n\t-d [STRING]\tSpecify the audio device for the JACK server"
     printf "\n\n\t-h\t\tShow help about command line options"
     printf "\n\n\t-k\t\tKill jackd, a2jmidid, and qjackctl"
