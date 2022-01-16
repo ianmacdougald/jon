@@ -15,6 +15,7 @@ function usage {
     printf "\n\n\t-k\t\tKill jackd, a2jmidid, and qjackctl"
     printf "\n\n\t-n [INT]\tSet the number of periods for JACK (2 for PCI, 3 for USB)"
     printf "\n\n\t-p [INT]\tSet the number of samples per period"
+    printf "\n\n\t-q Don't launch qjackctl"
     printf "\n\n\t-r [INT]\tSet the sample rate for the server"
     printf "\n\n\t-u\t\tUninstall $PROG"
     printf "\n\n\t-v\t\tShow version information"
@@ -53,8 +54,9 @@ DEVICE="PCH"
 RATE=48000
 NPERIODS=2
 PERIOD=128
+LAUNCH_QJACK=1
 
-while getopts ":b:c:d:r:n:p:vhuk" arg; do 
+while getopts ":b:c:d:r:n:p:vhukq" arg; do 
     case "${arg}" in 
 	b) 
 	    PLAYBACK="${OPTARG}"
@@ -64,6 +66,9 @@ while getopts ":b:c:d:r:n:p:vhuk" arg; do
 	    ;;
 	d) 
 	    set_device "${OPTARG}"
+	    ;;
+	q)
+	    LAUNCH_QJACK=0
 	    ;;
 	r)
 	    RATE="${OPTARG}"
@@ -131,6 +136,8 @@ sleep 1
 pacmd "set-default-sink jack_out"
 pacmd "set-default-source jack_in"
 
-#open qjackctl 
-echo "--- starting qjackctl"
-qjackctl -s &
+if [[ $LAUNCH_QJACK != 0 ]]; then
+    #open qjackctl	 
+    echo "--- starting qjackctl"
+    qjackctl -s &
+fi 
