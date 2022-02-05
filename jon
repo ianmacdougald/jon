@@ -15,7 +15,7 @@ function usage {
     printf "\n\n\t-k\t\tKill jackd, a2jmidid, and qjackctl"
     printf "\n\n\t-n [INT]\tSet the number of periods for JACK (2 for PCI, 3 for USB)"
     printf "\n\n\t-p [INT]\tSet the number of samples per period"
-    printf "\n\n\t-q Launch qjackctl"
+    printf "\n\n\t-q\t\tLaunch qjackctl"
     printf "\n\n\t-r [INT]\tSet the sample rate for the server"
     printf "\n\n\t-u\t\tUninstall $PROG"
     printf "\n\n\t-v\t\tShow version information"
