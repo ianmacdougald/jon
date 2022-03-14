@@ -13,7 +13,7 @@ function usage {
     printf "\n\n\t-d [STRING]\tSpecify the audio device for the JACK server"
     printf "\n\n\t-h\t\tShow help about command line options"
     printf "\n\n\t-k\t\tKill jackd, a2jmidid, and qjackctl"
-    printf "\n\n\t-n [INT]\tSet the number of periods for JACK (2 for PCI, 3 for USB)"
+    printf "\n\n\t-n [INT]\tSet the number of periods for JACK (2 for PCI, 3 for USB). Defaults to 3."
     printf "\n\n\t-p [INT]\tSet the number of samples per period"
     printf "\n\n\t-q\t\tLaunch qjackctl"
     printf "\n\n\t-r [INT]\tSet the sample rate for the server"
@@ -52,7 +52,7 @@ function set_device {
 
 DEVICE="PCH"
 RATE=48000
-NPERIODS=2
+NPERIODS=3
 PERIOD=128
 LAUNCH_QJACK=0
 
