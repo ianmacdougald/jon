@@ -1,4 +1,4 @@
-# jon/jof: Simple scripts for starting JACK, a2jmidid, and QjackCTL
+# jon/jof: A simple, central interface for managing JACK, a2jmidid, and QjackCTL 
 
 To install jon and jof in /usr/local/bin, run: 
 ~~~~
